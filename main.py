@@ -1,18 +1,18 @@
 import time
 import random
 global frage_ob_forfahren, auge_defender, auge_attacker
+
+
 # Attack or Defend?
-
-
 def spiel_als(character):
     global frage_ob_forfahren, auge_defender, auge_attacker
     if character == "defender" or character == "attacker":
         wahrscheinlichkeit(character)
         frage_ob_forfahren = input("Sicher das Sie fortfahren wollen (ja/nein)?\n>").lower()
         fuehre_entscheidung_durch(frage_ob_forfahren, character)
+
+
 # Continue?
-
-
 def fuehre_entscheidung_durch(fortfahren, character):
     global auge_defender, auge_attacker
     if fortfahren == "ja":
@@ -29,9 +29,9 @@ def fuehre_entscheidung_durch(fortfahren, character):
         char_wechsel()
     else:
         print("Ungültige Angabe!")
+
+
 # Probability to win calc
-
-
 def wahrscheinlichkeit(character):
     points_defender = 0
     points_attacker = 0
@@ -48,9 +48,9 @@ def wahrscheinlichkeit(character):
         points_player = points_defender
     wahrscheinlichkeit_1st_p_wins = points_player / absoluter_wert * 100
     print(f"Die Wahrscheinlichkeit das du gewinnst beträgt! {round(wahrscheinlichkeit_1st_p_wins, 2)}%")
+
+
 # Change character?
-
-
 def char_wechsel():
     while True:
         frage_character_wechsel = input("Wollen sie Character wechseln? (ja/nein)\n>").lower()
@@ -60,9 +60,9 @@ def char_wechsel():
             quit()
         else:
             print("Ungültige Angabe!")
+
+
 # Throw dice again?
-
-
 def ob_nochmal_werfen():
     while True:
         frage_nochmal_werfen = input("Möchten Sie nochmal werfen?\n>").lower()
@@ -72,9 +72,9 @@ def ob_nochmal_werfen():
             quit()
         else:
             print("Ungültige Angabe!")
+
+
 # Who won?
-
-
 def verloren_oder_gewonnen_text(character):
     if character == "defender":
         if auge_defender >= auge_attacker:
@@ -106,9 +106,9 @@ def verloren_oder_gewonnen_text(character):
         """)
             time.sleep(2)
             ob_nochmal_werfen()
+
+
 # Start game?
-
-
 def risiko():
     start_or_not = input("Start (j/n)?\n>").lower()
     if start_or_not == "j":
@@ -122,9 +122,9 @@ def risiko():
         quit()
     else:
         print("Ich versteh das nicht...")
+
+
 # Create main
-
-
 if __name__ == "__main__":
     while True:
         print("Risiko Spiel!")
