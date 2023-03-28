@@ -130,6 +130,6 @@ def risiko():
 
 
 if __name__ == "__main__":
-    while True:
-        print("Risiko Spiel!")
-        risiko()
+    print("Risiko Spiel!")
+    risiko()
+
