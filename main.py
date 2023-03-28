@@ -1,11 +1,9 @@
 import time
 import random
-global frage_ob_forfahren, auge_defender, auge_attacker
 
 
 # Attack or Defend?
 def spiel_als(character):
-    global frage_ob_forfahren, auge_defender, auge_attacker
     if character == "defender" or character == "attacker":
         wahrscheinlichkeit(character)
         frage_ob_forfahren = input("Sicher das Sie fortfahren wollen (ja/nein)?\n>").lower()
@@ -14,7 +12,6 @@ def spiel_als(character):
 
 # Continue?
 def fuehre_entscheidung_durch(fortfahren, character):
-    global auge_defender, auge_attacker
     if fortfahren == "ja":
         auge_defender = random.randint(1, 6)
         auge_attacker = random.randint(1, 6)
@@ -24,7 +21,7 @@ def fuehre_entscheidung_durch(fortfahren, character):
         time.sleep(1)
         print("...rollt immernoch...")
         time.sleep(1)
-        verloren_oder_gewonnen_text(character)
+        verloren_oder_gewonnen_text(character, auge_attacker, auge_defender)
     elif fortfahren == "nein":
         char_wechsel()
     else:
@@ -72,10 +69,11 @@ def ob_nochmal_werfen():
             quit()
         else:
             print("Ungültige Angabe!")
+    return frage_nochmal_werfen
 
 
 # Who won?
-def verloren_oder_gewonnen_text(character):
+def verloren_oder_gewonnen_text(character, auge_defender, auge_attacker):
     if character == "defender":
         if auge_defender >= auge_attacker:
             print(f"""
@@ -110,26 +108,26 @@ def verloren_oder_gewonnen_text(character):
 
 # Start game?
 def start_or_no():
-    start_or_not = input("Start (j/n)?\n>").lower()
-    if start_or_not == "j":
-        while True:
-            character = input("Chose your character (Defender/Attacker)\n>").lower()
-            if character == "defender" or character == "attacker":
-                spiel_als(character)
-            else:
-                print("Kein zulässiger Charakter")
-    elif start_or_not == "n":
-        quit()
-    else:
-        print("Ich versteh das nicht...")
+    while True:
+        start_or_not = input("Start (j/n)?\n>").lower()
+        if start_or_not == "j":
+            while True:
+                character = input("Chose your character (Defender/Attacker)\n>").lower()
+                if character == "defender" or character == "attacker":
+                    spiel_als(character)
+                else:
+                    print("Kein zulässiger Charakter")
+        elif start_or_not == "n":
+            quit()
+        else:
+            print("Ich versteh das nicht...")
 
 
 # Create main
 def risiko():
+    print("Risiko Spiel!")
     start_or_no()
 
 
 if __name__ == "__main__":
-    print("Risiko Spiel!")
     risiko()
-
